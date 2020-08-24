@@ -1,0 +1,1 @@
+delete from Employee where (select PersonID from (select PID PersonID, min(TNC) from Team inner join (select TeamName RTeamName, count(TeamName) TNC from Report group by TeamName) on Team.TeamName = RTeamName where rownum = 1 group by PID)) = Employee.PID;
